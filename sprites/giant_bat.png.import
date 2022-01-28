@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/apina2.svg-2cacd72fd4b6e612b3a1e290552a6fd0.stex"
+path="res://.import/giant_bat.png-a2b80bd1aa5857a26129a9f0dc52df23.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tiles/apina2.svg"
-dest_files=[ "res://.import/apina2.svg-2cacd72fd4b6e612b3a1e290552a6fd0.stex" ]
+source_file="res://sprites/giant_bat.png"
+dest_files=[ "res://.import/giant_bat.png-a2b80bd1aa5857a26129a9f0dc52df23.stex" ]
 
 [params]
 
