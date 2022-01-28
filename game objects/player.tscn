@@ -13,3 +13,5 @@ shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
+
+[node name="Light2D" type="Light2D" parent="."]
