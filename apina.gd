@@ -47,3 +47,6 @@ func _on_far_timer_timeout():
 	farCamTimer.stop()
 	nearCamTimer.start()
 	emit_signal("near_cam_on")
+	
+func play_whack_loop():
+	$AnimatedSprite.play("whack_loop")

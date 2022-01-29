@@ -12,6 +12,11 @@ animations = [ {
 "name": "default",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 2 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "whack_loop",
+"speed": 30.0
+}, {
 "frames": [ ExtResource( 2 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 2 ) ],
 "loop": false,
 "name": "whack",
@@ -26,4 +31,6 @@ farTime = 2
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.424444, 0.437603 )
 frames = SubResource( 1 )
-animation = "whack"
+animation = "whack_loop"
+frame = 3
+playing = true
