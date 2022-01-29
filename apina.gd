@@ -28,12 +28,10 @@ func _on_near_timer_timeout():
 	nearCamTimer.stop()
 	farCamTimer.start()
 	emit_signal("far_cam_on")
-	print("pam")
-	
+
 func _on_far_timer_timeout():
 	$AnimatedSprite.frame = 0
 	$AnimatedSprite.play("whack")
 	farCamTimer.stop()
 	nearCamTimer.start()
 	emit_signal("near_cam_on")
-	print("pum")
