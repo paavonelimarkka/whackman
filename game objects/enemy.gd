@@ -2,6 +2,12 @@ extends KinematicBody2D
 
 var speed = 50
 var path : = PoolVector2Array()
+onready var navigationNode = get_node('../Navigation2D')
+onready var player = get_node('../Player')
+
+func _ready():
+	var path = navigationNode.get_simple_path(self.position, player.position)
+	self.path = path
 
 func _process(delta):
 	# Calculate the movement distance for this frame
