@@ -47,23 +47,14 @@ func slow_down():
 func _on_timer_timeout():
 	speed = 200
 
-func reverse_lighting():
-	print("reverse asdsadsa")
-	
-	if light.color == Color(0,0,0,1):
-		light.color = Color(1,1,1,1)
-	elif light.color == Color(1,1,1,1):
-		light.color = Color(0,0,0,1)
-
-	if canvas.color == Color(0,0,0,1):
-		canvas.color = Color(1,1,1,1)
-	elif canvas.color == Color(1,1,1,1):
-		canvas.color = Color(0,0,0,1)
-
 func swapCamera():
 	if playerCamera.is_current():
 		mainCamera.make_current()
-		light.texture_scale = 1.5
+		light.texture_scale = 2
+		canvas.color = Color(1,1,1,1)
+		light.color = Color(0,0,0,1)
 	else:
 		playerCamera.make_current()
 		light.texture_scale = 1.0
+		canvas.color = Color(0,0,0,1)
+		light.color = Color(1,1,1,1)
