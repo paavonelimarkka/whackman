@@ -1,12 +1,15 @@
 extends KinematicBody2D
 
 export (int) var speed = 200
+export (int) var shake_amount = 10
 
 var velocity = Vector2()
 var timer = Timer.new()
+var shakeTimer = 0
+var cameraOffsetReset = false
 
 func _ready():
-	timer.connect("timeout",self,"_on_timer_timeout") 
+	timer.connect("timeout",self,"_on_timer_timeout")
 	add_child(timer) #to process
 
 onready var playerCamera = get_node('PlayerCamera')
@@ -30,6 +33,15 @@ func get_input():
 		swapCamera()
 	velocity = velocity.normalized() * speed
 
+func _process(delta):
+	if shakeTimer > 0:
+		playerCamera.set_offset(Vector2(rand_range(-1.0, 1.0) * shake_amount, rand_range(-1.0, 1.0) * shake_amount))
+		mainCamera.set_offset(Vector2(rand_range(-1.0, 1.0) * shake_amount, rand_range(-1.0, 1.0) * shake_amount))
+		shakeTimer = shakeTimer - 1
+	if shakeTimer == 0 && cameraOffsetReset:
+		playerCamera.set_offset(Vector2(0, 0))
+		mainCamera.set_offset(Vector2(0, 0))
+
 func _physics_process(delta):
 	get_input()
 	velocity = move_and_slide(velocity)
@@ -49,6 +61,8 @@ func _on_timer_timeout():
 	speed = 200
 
 func swapCamera():
+	shakeTimer = 50
+	cameraOffsetReset = true
 	if playerCamera.is_current():
 		mainCamera.make_current()
 		animationPlayer.play('zoom_out_colors')
