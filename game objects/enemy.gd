@@ -14,7 +14,7 @@ func _process(delta):
 	var distance_to_walk = speed * delta
 	
 	# Move the player along the path until he has run out of movement or the path ends.
-	while distance_to_walk > 0 and path.size() > 0:
+	if distance_to_walk > 0 and path.size() > 0:
 		var distance_to_next_point = position.distance_to(path[0])
 		if distance_to_walk <= distance_to_next_point:
 			# The player does not have enough movement left to get to the next point.
