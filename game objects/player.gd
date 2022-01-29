@@ -75,3 +75,9 @@ func swapCamera():
 func _on_Area2D_body_entered(body):
 	print(body)
 	slow_down()
+
+func _on_Apina_far_cam_on():
+	swapCamera()
+
+func _on_Apina_near_cam_on():
+	swapCamera()
