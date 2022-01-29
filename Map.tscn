@@ -164,6 +164,10 @@ scale = Vector2( 0.3, 0.3 )
 nearTime = 4
 farTime = 10
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Apina"]
+position = Vector2( -1816.67, -886.667 )
+scale = Vector2( 3.33333, 3.33333 )
+
 [connection signal="body_entered" from="Trap" to="." method="_on_Trap_body_entered"]
 [connection signal="body_entered" from="Trap" to="Player" method="_on_Area2D_body_entered"]
 [connection signal="far_cam_on" from="Apina" to="Player" method="_on_Apina_far_cam_on"]

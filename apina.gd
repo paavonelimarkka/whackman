@@ -1,5 +1,7 @@
 extends Node
 
+var taraytys = preload("res://audio/taraytys.ogg")
+
 export var nearTime = 2
 export var farTime = 4
 
@@ -23,6 +25,11 @@ func _ready():
 	
 
 func _on_near_timer_timeout():
+	#audio
+	if !$AudioStreamPlayer2D.is_playing():
+		$AudioStreamPlayer2D.stream = taraytys
+		$AudioStreamPlayer2D.play()
+	
 	$AnimatedSprite.frame = 0
 	$AnimatedSprite.play("whack")
 	nearCamTimer.stop()
@@ -30,6 +37,11 @@ func _on_near_timer_timeout():
 	emit_signal("far_cam_on")
 
 func _on_far_timer_timeout():
+	#audio
+	if !$AudioStreamPlayer2D.is_playing():
+		$AudioStreamPlayer2D.stream = taraytys
+		$AudioStreamPlayer2D.play()
+	
 	$AnimatedSprite.frame = 0
 	$AnimatedSprite.play("whack")
 	farCamTimer.stop()
