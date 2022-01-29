@@ -38,3 +38,18 @@ func slow_down():
 
 func _on_timer_timeout():
 	speed = 200
+
+func reverse_lighting():
+	print("reverse asdsadsa")
+	var light = get_node("Light2D")
+	var canvas = get_node("CanvasModulate")
+	
+	if light.color == Color(0,0,0,1):
+		light.color = Color(1,1,1,1)
+	elif light.color == Color(1,1,1,1):
+		light.color = Color(0,0,0,1)
+
+	if canvas.color == Color(0,0,0,1):
+		canvas.color = Color(1,1,1,1)
+	elif canvas.color == Color(1,1,1,1):
+		canvas.color = Color(0,0,0,1)
