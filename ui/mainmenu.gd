@@ -8,10 +8,10 @@ extends Button
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-    var button = Button.new()
-    button.text = "Painappa tästä"
-    button.connect("pressed", self, "_button_pressed")
-    add_child(button)
+	var button = Button.new()
+	button.text = "Painappa tästä"
+	button.connect("pressed", self, "_button_pressed")
+	add_child(button)
 
 func _button_pressed():
 	print("jeejeejeeejeeejee")

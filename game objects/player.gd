@@ -1,6 +1,8 @@
 extends KinematicBody2D
 
 export (int) var speed = 200
+export (NodePath) var playerCameraNodePath
+export (NodePath) var mainCameraNodePath
 
 var velocity = Vector2()
 var timer = Timer.new()
@@ -8,6 +10,9 @@ var timer = Timer.new()
 func _ready():
 	timer.connect("timeout",self,"_on_timer_timeout") 
 	add_child(timer) #to process
+
+onready var playerCamera = get_node(playerCameraNodePath)
+onready var mainCamera = get_node(mainCameraNodePath)
 
 func get_input():
 	velocity = Vector2()
@@ -19,6 +24,9 @@ func get_input():
 		velocity.y += 1
 	elif Input.is_action_pressed("up"):
 		velocity.y -= 1
+	# POISTAKAA TÄÄ KU TÄRÄYTETÄÄN!
+	elif Input.is_action_just_pressed("camera_swap"):
+		swapCamera()
 	velocity = velocity.normalized() * speed
 
 func _physics_process(delta):
@@ -53,3 +61,9 @@ func reverse_lighting():
 		canvas.color = Color(1,1,1,1)
 	elif canvas.color == Color(1,1,1,1):
 		canvas.color = Color(0,0,0,1)
+
+func swapCamera():
+	if playerCamera.is_current():
+		mainCamera.make_current()
+	else:
+		playerCamera.make_current()
