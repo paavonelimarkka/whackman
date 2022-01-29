@@ -19,3 +19,4 @@ func _process(delta):
 			path.remove(0)
 		# Update the distance to walk
 		distance_to_walk -= distance_to_next_point
+	
