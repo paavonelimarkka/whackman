@@ -7,6 +7,7 @@ var velocity = Vector2()
 var timer = Timer.new()
 var shakeTimer = 0
 var cameraOffsetReset = false
+var game_over = false
 
 func _ready():
 	timer.connect("timeout",self,"_on_timer_timeout")
@@ -52,9 +53,11 @@ func _physics_process(delta):
 
 	var collision = move_and_collide(velocity * delta)
 	if collision:
-		if (collision.collider.name == 'Enemy'):
+		if (collision.collider.name == 'Enemy') && !game_over:
+			game_over = true
 			apina.stop_and_shake()
 			animationPlayer.play("fade_to_red")
+			light.queue_free()
 
 	#for index in get_slide_count():
 	#	var collision = get_slide_collision(index)

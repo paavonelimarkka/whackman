@@ -2,10 +2,12 @@ extends KinematicBody2D
 
 var speed = 50
 var path : = PoolVector2Array()
+var chase = false
 onready var navigationNode = get_node('../Navigation2D')
 onready var player = get_node('../Player')
 onready var path_map = get_node("../Navigation2D/TileMap - Path")
 var randomPathTimer = 500
+var jahti_timer = 0
 
 func _ready():
 	get_random_position_on_path()
@@ -14,8 +16,22 @@ func _process(delta):
 	# Calculate the movement distance for this frame
 	var distance_to_walk = speed * delta
 	
+	if chase:
+		jahti_timer -= 1
+	
+	if position.distance_to(player.position) < 200 && jahti_timer <= 0:
+		jahti_timer = 25
+		chase = true
+		print('JAHTI PÄÄLLÄ')
+		path = navigationNode.get_simple_path(self.position, player.position)
+		self.path = path
+	
+	if position.distance_to(player.position) > 300 && chase:
+		chase = false
+		print('Jahti pois')
+		get_random_position_on_path()
+	
 	randomPathTimer -= 1
-	print(path.size())
 	if randomPathTimer < 0 || path.size() <= 0:
 		get_random_position_on_path()
 	
