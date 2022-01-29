@@ -1,8 +1,6 @@
 extends KinematicBody2D
 
 export (int) var speed = 200
-export (NodePath) var playerCameraNodePath
-export (NodePath) var mainCameraNodePath
 
 var velocity = Vector2()
 var timer = Timer.new()
@@ -11,10 +9,10 @@ func _ready():
 	timer.connect("timeout",self,"_on_timer_timeout") 
 	add_child(timer) #to process
 
-onready var playerCamera = get_node(playerCameraNodePath)
-onready var mainCamera = get_node(mainCameraNodePath)
 onready var light = get_node("Light2D")
 onready var canvas = get_node("CanvasModulate")
+onready var playerCamera = get_node('PlayerCamera')
+onready var mainCamera = get_node('../MainCamera')
 
 func get_input():
 	velocity = Vector2()
