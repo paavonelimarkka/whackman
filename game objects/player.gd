@@ -13,6 +13,8 @@ func _ready():
 
 onready var playerCamera = get_node(playerCameraNodePath)
 onready var mainCamera = get_node(mainCameraNodePath)
+onready var light = get_node("Light2D")
+onready var canvas = get_node("CanvasModulate")
 
 func get_input():
 	velocity = Vector2()
@@ -49,8 +51,6 @@ func _on_timer_timeout():
 
 func reverse_lighting():
 	print("reverse asdsadsa")
-	var light = get_node("Light2D")
-	var canvas = get_node("CanvasModulate")
 	
 	if light.color == Color(0,0,0,1):
 		light.color = Color(1,1,1,1)
@@ -65,5 +65,7 @@ func reverse_lighting():
 func swapCamera():
 	if playerCamera.is_current():
 		mainCamera.make_current()
+		light.texture_scale = 1.5
 	else:
 		playerCamera.make_current()
+		light.texture_scale = 1.0
