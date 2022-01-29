@@ -154,10 +154,9 @@ shape = SubResource( 10 )
 texture = ExtResource( 10 )
 
 [node name="Apina" parent="." instance=ExtResource( 13 )]
-position = Vector2( 545, 266 )
+position = Vector2( 545, 267 )
 scale = Vector2( 0.3, 0.3 )
-nearTime = 6
-farTime = 3
+farTime = 1000
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Apina"]
 
