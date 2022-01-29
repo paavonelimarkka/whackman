@@ -13,9 +13,3 @@ func _ready():
 #func _process(delta):
 #	pass
 
-func _on_Area2D_body_entered(body):
-	print(body)
-	var player = get_node("../KinematicBody2D")
-	player.slow_down()
-	
-

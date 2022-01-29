@@ -1,6 +1,8 @@
 extends KinematicBody2D
 
 export (int) var speed = 200
+export (NodePath) var playerCameraNodePath
+export (NodePath) var mainCameraNodePath
 
 var velocity = Vector2()
 var timer = Timer.new()
@@ -9,10 +11,8 @@ func _ready():
 	timer.connect("timeout",self,"_on_timer_timeout") 
 	add_child(timer) #to process
 
-onready var light = get_node("Light2D")
-onready var canvas = get_node("CanvasModulate")
-onready var playerCamera = get_node('PlayerCamera')
-onready var mainCamera = get_node('../MainCamera')
+onready var playerCamera = get_node(playerCameraNodePath)
+onready var mainCamera = get_node(mainCameraNodePath)
 
 func get_input():
 	velocity = Vector2()
@@ -47,14 +47,26 @@ func slow_down():
 func _on_timer_timeout():
 	speed = 200
 
+func reverse_lighting():
+	print("reverse asdsadsa")
+	var light = get_node("Light2D")
+	var canvas = get_node("CanvasModulate")
+	
+	if light.color == Color(0,0,0,1):
+		light.color = Color(1,1,1,1)
+	elif light.color == Color(1,1,1,1):
+		light.color = Color(0,0,0,1)
+
+	if canvas.color == Color(0,0,0,1):
+		canvas.color = Color(1,1,1,1)
+	elif canvas.color == Color(1,1,1,1):
+		canvas.color = Color(0,0,0,1)
+
 func swapCamera():
 	if playerCamera.is_current():
 		mainCamera.make_current()
-		light.texture_scale = 2
-		canvas.color = Color(1,1,1,1)
-		light.color = Color(0,0,0,1)
 	else:
 		playerCamera.make_current()
-		light.texture_scale = 1.0
-		canvas.color = Color(0,0,0,1)
-		light.color = Color(1,1,1,1)
+
+func _on_Area2D_body_entered(body):
+	slow_down()
