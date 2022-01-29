@@ -11,6 +11,8 @@ var cameraOffsetReset = false
 func _ready():
 	timer.connect("timeout",self,"_on_timer_timeout")
 	add_child(timer) #to process
+	canvas.color = Color(0, 0, 0, 1)
+	light.color = Color(1, 1, 1, 1)
 
 onready var playerCamera = get_node('PlayerCamera')
 onready var mainCamera = get_node('../MainCamera')
@@ -29,8 +31,8 @@ func get_input():
 	elif Input.is_action_pressed("up"):
 		velocity.y -= 1
 	# POISTAKAA TÄÄ KU TÄRÄYTETÄÄN!
-	elif Input.is_action_just_pressed("camera_swap"):
-		swapCamera()
+	#elif Input.is_action_just_pressed("camera_swap"):
+	#	swapCamera()
 	velocity = velocity.normalized() * speed
 
 func _process(delta):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://tileset-floor.tres" type="TileSet" id=1]
 [ext_resource path="res://tileset-walls.tres" type="TileSet" id=2]
@@ -11,7 +11,6 @@
 [ext_resource path="res://tiles/floors/grass_flowers_red_2.png" type="Texture" id=9]
 [ext_resource path="res://tiles/dngn_trap_shaft.png" type="Texture" id=10]
 [ext_resource path="res://game objects/trap.tscn" type="PackedScene" id=11]
-[ext_resource path="res://game objects/banana.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Apina.tscn" type="PackedScene" id=13]
 
 [sub_resource type="NavigationPolygon" id=6]
@@ -121,12 +120,8 @@ collision_mask = 22
 
 [node name="PlayerCamera" type="Camera2D" parent="Player"]
 rotating = true
+current = true
 zoom = Vector2( 0.4, 0.4 )
-
-[node name="Banana" parent="." instance=ExtResource( 12 )]
-position = Vector2( 116, 402 )
-collision_layer = 32
-collision_mask = 0
 
 [node name="MainCamera" type="Camera2D" parent="."]
 anchor_mode = 0
@@ -161,8 +156,8 @@ texture = ExtResource( 10 )
 [node name="Apina" parent="." instance=ExtResource( 13 )]
 position = Vector2( 545, 266 )
 scale = Vector2( 0.3, 0.3 )
-nearTime = 4
-farTime = 10
+nearTime = 6
+farTime = 3
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Apina"]
 position = Vector2( -1816.67, -886.667 )

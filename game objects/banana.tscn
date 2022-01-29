@@ -63,12 +63,16 @@ animations = [ {
 [sub_resource type="CircleShape2D" id=12]
 
 [node name="Banana" type="StaticBody2D"]
+collision_layer = 32
+collision_mask = 0
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 16, 16 )
 frames = SubResource( 11 )
-frame = 6
+frame = 4
 speed_scale = 2.5
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 16, 16 )
 shape = SubResource( 12 )
