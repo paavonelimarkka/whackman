@@ -12,3 +12,7 @@ data_*/
 
 # MacOS
 .DS_Store
+
+# Workflow
+
+sandbox/*
