@@ -26,9 +26,9 @@ func _ready():
 
 func _on_near_timer_timeout():
 	#audio
-	if !$AudioStreamPlayer2D.is_playing():
-		$AudioStreamPlayer2D.stream = taraytys
-		$AudioStreamPlayer2D.play()
+	if !$AudioStreamPlayer.is_playing():
+		$AudioStreamPlayer.stream = taraytys
+		$AudioStreamPlayer.play()
 	
 	$AnimatedSprite.frame = 0
 	$AnimatedSprite.play("whack")
@@ -38,9 +38,9 @@ func _on_near_timer_timeout():
 
 func _on_far_timer_timeout():
 	#audio
-	if !$AudioStreamPlayer2D.is_playing():
-		$AudioStreamPlayer2D.stream = taraytys
-		$AudioStreamPlayer2D.play()
+	if !$AudioStreamPlayer.is_playing():
+		$AudioStreamPlayer.stream = taraytys
+		$AudioStreamPlayer.play()
 	
 	$AnimatedSprite.frame = 0
 	$AnimatedSprite.play("whack")
