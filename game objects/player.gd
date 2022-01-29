@@ -19,6 +19,8 @@ onready var mainCamera = get_node('../MainCamera')
 onready var animationPlayer = get_node('AnimationPlayer')
 onready var canvas = get_node("CanvasModulate")
 onready var light = get_node("Light2D")
+onready var apina = get_node('../Apina')
+onready var apina_camera = get_node('../Apina/ApinaCamera')
 
 func get_input():
 	velocity = Vector2()
@@ -46,8 +48,13 @@ func _process(delta):
 
 func _physics_process(delta):
 	get_input()
-	velocity = move_and_slide(velocity)
+	#velocity = move_and_slide(velocity)
 
+	var collision = move_and_collide(velocity * delta)
+	if collision:
+		if (collision.collider.name == 'Enemy'):
+			apina.stop_and_shake()
+			animationPlayer.play("fade_to_red")
 
 	#for index in get_slide_count():
 	#	var collision = get_slide_collision(index)
@@ -74,12 +81,11 @@ func swapCamera():
 		animationPlayer.play('zoom_in_colors')
 		light.texture_scale = 1
 
-func _on_Area2D_body_entered(body):
-	print(body)
-	slow_down()
-
 func _on_Apina_far_cam_on():
 	swapCamera()
 
 func _on_Apina_near_cam_on():
 	swapCamera()
+	
+func get_slide_collision(body):
+	print(body)

@@ -7,9 +7,13 @@ export var farTime = 4
 
 var nearCamTimer = Timer.new()
 var farCamTimer = Timer.new()
+var shake = false
 
 signal near_cam_on
 signal far_cam_on
+
+onready var apinaCamera = get_node('ApinaCamera')
+onready var canvas_modulate = get_node("CanvasModulate")
 
 
 func _ready():
@@ -23,6 +27,17 @@ func _ready():
 	
 	nearCamTimer.start()
 	
+func _process(delta):
+	if shake:
+
+		apinaCamera.set_offset(Vector2(rand_range(-1.0, 1.0) * 5, rand_range(-1.0, 1.0) * 5))
+
+func stop_and_shake():
+	shake = true
+	nearCamTimer.stop()
+	farCamTimer.stop()
+	play_whack_loop()
+	apinaCamera.make_current()
 
 func _on_near_timer_timeout():
 	#audio

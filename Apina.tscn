@@ -31,6 +31,6 @@ farTime = 2
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.424444, 0.437603 )
 frames = SubResource( 1 )
-animation = "whack_loop"
-frame = 3
+animation = "whack"
+frame = 5
 playing = true

@@ -4,10 +4,10 @@ var speed = 50
 var path : = PoolVector2Array()
 onready var navigationNode = get_node('../Navigation2D')
 onready var player = get_node('../Player')
+onready var path_map = get_node("../Navigation2D/TileMap - Path")
 
 func _ready():
-	var path = navigationNode.get_simple_path(self.position, player.position)
-	self.path = path
+	get_random_position_on_path()
 
 func _process(delta):
 	# Calculate the movement distance for this frame
@@ -20,9 +20,16 @@ func _process(delta):
 			# The player does not have enough movement left to get to the next point.
 			position += position.direction_to(path[0]) * distance_to_walk
 		else:
-			# The player get to the next point
 			position = path[0]
 			path.remove(0)
 		# Update the distance to walk
 		distance_to_walk -= distance_to_next_point
-	
+
+func get_random_position_on_path():
+	var x = randi() % 30
+	var y = randi() % 17
+	if (path_map.get_cell(x,y) >= 0):
+		path = navigationNode.get_simple_path(self.position, path_map.map_to_world(Vector2(x, y)))
+		self.path = path
+	else:
+		get_random_position_on_path()

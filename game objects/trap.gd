@@ -1,18 +1,12 @@
 extends Area2D
 
+onready var player = get_node('/root/Map/Player')
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	print('asd')
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+	pass
 
 func _on_Area2D_body_entered(body):
 	print(body)
-	queue_free()
+	if (body.get_name() == 'Player'):
+		player.slow_down()
+		queue_free()
