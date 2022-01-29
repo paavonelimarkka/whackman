@@ -11,6 +11,9 @@ func _ready():
 
 onready var playerCamera = get_node('PlayerCamera')
 onready var mainCamera = get_node('../MainCamera')
+onready var animationPlayer = get_node('AnimationPlayer')
+onready var canvas = get_node("CanvasModulate")
+onready var light = get_node("Light2D")
 
 func get_input():
 	velocity = Vector2()
@@ -45,26 +48,16 @@ func slow_down():
 func _on_timer_timeout():
 	speed = 200
 
-func reverse_lighting():
-	print("reverse asdsadsa")
-	var light = get_node("Light2D")
-	var canvas = get_node("CanvasModulate")
-	
-	if light.color == Color(0,0,0,1):
-		light.color = Color(1,1,1,1)
-	elif light.color == Color(1,1,1,1):
-		light.color = Color(0,0,0,1)
-
-	if canvas.color == Color(0,0,0,1):
-		canvas.color = Color(1,1,1,1)
-	elif canvas.color == Color(1,1,1,1):
-		canvas.color = Color(0,0,0,1)
-
 func swapCamera():
 	if playerCamera.is_current():
 		mainCamera.make_current()
+		animationPlayer.play('zoom_out_colors')
+		light.texture_scale = 2
 	else:
 		playerCamera.make_current()
+		animationPlayer.play('zoom_in_colors')
+		light.texture_scale = 1
 
 func _on_Area2D_body_entered(body):
+	print(body)
 	slow_down()
