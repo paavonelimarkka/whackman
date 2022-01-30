@@ -69,7 +69,7 @@ func _physics_process(delta):
 			
 func slow_down():
 	timer.start() #to start
-	speed = 100
+	speed = 50
 
 func _on_timer_timeout():
 	speed = 200
