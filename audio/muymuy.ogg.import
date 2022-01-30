@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/muymuy.ogg-10880412f2b8ad5af7c79a49573a19df.oggstr"
+
+[deps]
+
+source_file="res://audio/muymuy.ogg"
+dest_files=[ "res://.import/muymuy.ogg-10880412f2b8ad5af7c79a49573a19df.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

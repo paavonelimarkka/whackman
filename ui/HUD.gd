@@ -4,7 +4,7 @@ extends CanvasLayer
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-
+var muymuy = preload("res://audio/muymuy.ogg")
 var banana_count = 0
 
 # Called when the node enters the scene tree for the first time.
@@ -15,6 +15,9 @@ func _ready():
 func update_banana_counter():
 	banana_count += 1
 	$banana_counter.text = str("Bananas: ", banana_count)
+	if !$AudioStreamPlayer.is_playing():
+		$AudioStreamPlayer.stream = muymuy
+		$AudioStreamPlayer.play()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
