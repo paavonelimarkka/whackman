@@ -25,7 +25,9 @@ onready var apina_camera = get_node('../Apina/ApinaCamera')
 
 func get_input():
 	velocity = Vector2()
-	if Input.is_action_pressed("right"):
+	if game_over:
+		pass
+	elif Input.is_action_pressed("right"):
 		velocity.x += 1
 	elif Input.is_action_pressed("left"):
 		velocity.x -= 1
@@ -53,7 +55,7 @@ func _physics_process(delta):
 
 	var collision = move_and_collide(velocity * delta)
 	if collision:
-		if (collision.collider.name == 'Enemy') && !game_over:
+		if (collision.collider.is_in_group('enemy')) && !game_over:
 			game_over = true
 			apina.stop_and_shake()
 			animationPlayer.play("fade_to_red")
