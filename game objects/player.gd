@@ -25,7 +25,9 @@ onready var apina_camera = get_node('../Apina/ApinaCamera')
 
 func get_input():
 	velocity = Vector2()
-	if Input.is_action_pressed("right"):
+	if game_over:
+		pass
+	elif Input.is_action_pressed("right"):
 		velocity.x += 1
 	elif Input.is_action_pressed("left"):
 		velocity.x -= 1

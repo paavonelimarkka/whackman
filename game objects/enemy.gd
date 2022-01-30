@@ -6,15 +6,26 @@ var chase = false
 onready var navigationNode = get_node('../Navigation2D')
 onready var player = get_node('../Player')
 onready var path_map = get_node("../Navigation2D/TileMap - Path")
+onready var map = get_node("/root/Map")
 var randomPathTimer = 500
+var rng = RandomNumberGenerator.new()
 var jahti_timer = 0
+var trapDispenserTime
 
 func _ready():
+	rng.randomize()
 	get_random_position_on_path()
+	trapDispenserTime = rng.randf_range(250.0, 500.0)
 
 func _process(delta):
 	# Calculate the movement distance for this frame
 	var distance_to_walk = speed * delta
+	
+	if trapDispenserTime <= 0:
+		map.dispenseTrap(self.position)
+		trapDispenserTime = rng.randf_range(250.0, 500.0)
+	
+	trapDispenserTime -= 1
 	
 	if chase:
 		jahti_timer -= 1
@@ -22,13 +33,11 @@ func _process(delta):
 	if position.distance_to(player.position) < 200 && jahti_timer <= 0:
 		jahti_timer = 25
 		chase = true
-		print('JAHTI PÄÄLLÄ')
 		path = navigationNode.get_simple_path(self.position, player.position)
 		self.path = path
 	
 	if position.distance_to(player.position) > 300 && chase:
 		chase = false
-		print('Jahti pois')
 		get_random_position_on_path()
 	
 	randomPathTimer -= 1
@@ -51,7 +60,6 @@ func get_random_position_on_path():
 	var x = randi() % 30
 	var y = randi() % 17
 	if (path_map.get_cell(x,y) >= 0):
-		print('Vaihoin suuntaa, t. Hämis')
 		path = navigationNode.get_simple_path(self.position, path_map.map_to_world(Vector2(x, y)) + Vector2(6, 6))
 		self.path = path
 		randomPathTimer = 500
