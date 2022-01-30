@@ -11,6 +11,7 @@ onready var path_map = get_node("Navigation2D/TileMap - Path")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	randomize()
 	var x = 0
 	while x < banana_count:
 		spawn_banana()
