@@ -22,6 +22,7 @@ onready var canvas = get_node("CanvasModulate")
 onready var light = get_node("Light2D")
 onready var apina = get_node('../Apina')
 onready var apina_camera = get_node('../Apina/ApinaCamera')
+onready var hud = get_node("../HUD")
 
 func get_input():
 	velocity = Vector2()
@@ -60,6 +61,7 @@ func _physics_process(delta):
 			apina.stop_and_shake()
 			animationPlayer.play("fade_to_red")
 			light.queue_free()
+			hud.show_restart()
 
 	#for index in get_slide_count():
 	#	var collision = get_slide_collision(index)
