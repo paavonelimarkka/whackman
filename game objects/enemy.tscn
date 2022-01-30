@@ -63,7 +63,9 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="KinematicBody2D2" type="KinematicBody2D" groups=["enemy"]]
+[node name="Enemy" type="KinematicBody2D" groups=["enemy"]]
+collision_layer = 16
+collision_mask = 8
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
@@ -75,7 +77,7 @@ shape = SubResource( 1 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, 4 )
 frames = SubResource( 12 )
-frame = 4
+frame = 6
 speed_scale = 3.0
 playing = true
 

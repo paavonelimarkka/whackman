@@ -53,7 +53,7 @@ func _physics_process(delta):
 
 	var collision = move_and_collide(velocity * delta)
 	if collision:
-		if (collision.collider.name == 'Enemy') && !game_over:
+		if (collision.collider.is_in_group('enemy')) && !game_over:
 			game_over = true
 			apina.stop_and_shake()
 			animationPlayer.play("fade_to_red")
