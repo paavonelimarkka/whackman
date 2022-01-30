@@ -1,6 +1,7 @@
 extends Node
 
 var taraytys = preload("res://audio/taraytys.ogg")
+var monkey_laugh = preload("res://audio/monkey_laugh.ogg")
 
 export var nearTime = 2
 export var farTime = 4
@@ -38,6 +39,9 @@ func stop_and_shake():
 	farCamTimer.stop()
 	play_whack_loop()
 	apinaCamera.make_current()
+	if !$AudioStreamPlayer.is_playing():
+		$AudioStreamPlayer.stream = monkey_laugh
+		$AudioStreamPlayer.play()
 
 func _on_near_timer_timeout():
 	#audio
